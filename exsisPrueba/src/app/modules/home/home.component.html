@@ -1,0 +1,22 @@
+
+    <div class="container">
+
+        <h2 class="h2 m-5 text-justify">Home</h2>
+        
+        <div class="card-group m-5" >    
+            <div class="col-sm-4 mb-2" (click)="getDetalle(noticia)" *ngFor="let noticia of noticias">
+                <div  class="card ">
+                    <div class="card-body">
+                        <h5 class="card-title">{{noticia.title}}</h5>
+                        <!-- <p class="card-text">
+                            {{noticia.body}}
+                        </p> -->
+
+                        
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>

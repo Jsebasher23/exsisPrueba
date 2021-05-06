@@ -1,0 +1,92 @@
+<div class="container">
+
+
+    <form action="" [formGroup]="validateForm" 
+                    autocomplete="off"
+                    (submit)="onSubmit()">
+
+        <div class="form-group">
+            <label><span style="color: red;">*</span>Nombre</label>
+            <input name="name" 
+                    type="text"
+                    class="form-control" 
+                    [class.is-invalid]="validateForm.get('name').touched && validateForm.get('name').invalid" 
+                    placeholder="Nombre"
+                    formControlName="name">
+            <div *ngIf="validateForm.controls['name'].invalid && validateForm.controls['name'].touched" style="color: red;">
+                <p *ngIf="validateForm.get('name').hasError('required')">*Campo Obligatorio.</p>
+                <p *ngIf="validateForm.get('name').hasError('pattern')">Solo se permite letras.</p>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label><span style="color: red;">*</span>Apellido</label>
+            <input name="lastName" 
+                    class="form-control" 
+                    [class.is-invalid]="validateForm.get('lastName').touched && validateForm.get('lastName').invalid"
+                    placeholder="Apellido"
+                    formControlName="lastName">
+            <div *ngIf="validateForm.controls['lastName'].invalid && validateForm.controls['lastName'].touched" style="color: red;">
+                <p *ngIf="validateForm.get('lastName').hasError('required')">*Campo Obligatorio.</p>
+                <p *ngIf="validateForm.get('lastName').hasError('pattern')">Solo se permite letras.</p>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input name="email" 
+                    type="email"
+                    class="form-control"
+                    [class.is-invalid]="validateForm.get('email').touched && validateForm.get('email').invalid"
+                    placeholder="Email"
+                    formControlName="email">
+            <div *ngIf="validateForm.controls['email'].invalid && validateForm.controls['email'].touched" style="color: red;">
+                <p *ngIf="validateForm.get('email').hasError('email')">Deber contar con formato de correo electrónico.</p>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label>Teléfono</label>
+            <input name="tel" 
+                    class="form-control" 
+                    [class.is-invalid]="validateForm.controls['phone'].touched && validateForm.controls['phone'].invalid"
+                    placeholder="Teléfono"
+                    type="text"
+                    formControlName="phone"
+                    maxlength="10">
+            <div *ngIf="validateForm.controls['phone'].invalid && validateForm.controls['phone'].touched" style="color: red;">                
+                <p *ngIf="validateForm.controls['phone'].hasError('pattern')">Solo números.</p>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label>Programa de interés</label>
+            <!-- <input name="interes" 
+                    class="form-control"
+                    placeholder="Programa de interés">
+             -->
+            <select class="form-control"
+                    formControlName="program">
+                <option value=""> Seleccione un Programa...</option>
+                <option *ngFor="let programa of programas"
+                        [value]="programa.id">
+                    {{ programa.name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Comentario</label>
+            <input name="comentario" 
+                    class="form-control"
+                    formControlName="comment"
+                    placeholder="Comentario">
+
+        </div>
+        <div class="form-group">
+            <button type="submit"
+                    [disabled]="validateForm.invalid"
+                    class="btn btn-primary">Guardar</button>
+
+        </div>
+    </form>
+</div>
